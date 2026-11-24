@@ -1,0 +1,64 @@
+groups:
+  - name: aerobooking-availability
+    rules:
+      - alert: AeroBookingTargetDown
+        expr: up{job!="prometheus"} == 0
+        for: 1m
+        labels: {severity: critical}
+        annotations:
+          summary: "AeroBooking target is unavailable"
+          description: "Prometheus cannot scrape {{ $labels.job }} at {{ $labels.instance }}."
+      - alert: AeroBookingHighHttp5xxRate
+        expr: sum(rate(aerobooking_http_requests_total{status=~"5.."}[5m])) / clamp_min(sum(rate(aerobooking_http_requests_total[5m])), 0.001) > 0.05
+        for: 3m
+        labels: {severity: warning}
+        annotations:
+          summary: "HTTP 5xx rate is above 5%"
+          description: "More than 5% of application requests failed during the last 5 minutes."
+      - alert: AeroBookingHighHttpP95
+        expr: histogram_quantile(0.95, sum by (le, service) (rate(aerobooking_http_request_duration_seconds_bucket[5m]))) > 1.5
+        for: 5m
+        labels: {severity: warning}
+        annotations:
+          summary: "Application p95 latency is high"
+          description: "{{ $labels.service }} p95 latency exceeded 1.5 seconds."
+      - alert: AeroBookingHostMemoryHigh
+        expr: (1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) > 0.90
+        for: 5m
+        labels: {severity: warning}
+        annotations:
+          summary: "Host memory usage is above 90%"
+          description: "The monitored Docker host is running low on available memory."
+
+  - name: aerobooking-reliability
+    rules:
+      - alert: AeroBookingAirlineCircuitOpen
+        expr: aerobooking_airline_circuit_open == 1
+        for: 1m
+        labels: {severity: warning}
+        annotations: {summary: 'Airline circuit breaker is open', description: 'Airline requests are failing fast; inspect airline connector and reconciliation.'}
+      - alert: AeroBookingOutboxPublishFailures
+        expr: increase(aerobooking_outbox_publish_failures_total[5m]) > 0
+        for: 1m
+        labels: {severity: warning}
+        annotations: {summary: 'Outbox publication failures detected', description: 'Check RabbitMQ connectivity and outbox retry backlog.'}
+      - alert: AeroBookingReconciliationFindings
+        expr: increase(aerobooking_reconciliation_findings_total[15m]) > 0
+        for: 1m
+        labels: {severity: critical}
+        annotations: {summary: 'Booking/ledger reconciliation findings detected', description: 'Review the reconciliation run; financial corrections are report-first and require controlled action.'}
+      - alert: AeroBookingOutboxBacklogGrowing
+        expr: aerobooking_outbox_unpublished > 100
+        for: 5m
+        labels: {severity: warning}
+        annotations: {summary: 'Outbox backlog is growing', description: 'More than 100 messages are waiting for publication.'}
+      - alert: AeroBookingEventStoreNoWrites
+        expr: sum(increase(aerobooking_domain_events_total[15m])) == 0
+        for: 15m
+        labels: {severity: info}
+        annotations: {summary: 'No domain events observed', description: 'Check whether booking traffic is expected and whether booking-service is scraping metrics.'}
+      - alert: AeroBookingTicketVoidActivity
+        expr: increase(aerobooking_ticket_operations_total{operation='void'}[5m]) > 5
+        for: 1m
+        labels: {severity: warning}
+        annotations: {summary: 'Unusual ticket void activity', description: 'More than five ticket void operations occurred in five minutes.'}

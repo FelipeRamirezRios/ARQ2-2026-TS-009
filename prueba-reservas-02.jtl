@@ -1,0 +1,14 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1795561571575,266,Auth_Empresa_A,200,OK,Empresa_A 1-1,text,true,,1246,385,1,2,http://localhost:8000/v1/auth/token,263,0,15
+1795561571892,9,Buscar_Vuelos_A,200,OK,Empresa_A 1-1,text,true,,1177,958,1,2,http://localhost:8000/v1/fares/search?origin=BOG&destination=MDE&date=2026-12-07&cabin=ECONOMY&pax=1&airline=DEMO,9,0,0
+1795561571905,46,Inicializar_Bot_A,200,OK,Empresa_A 1-1,text,true,,0,0,1,2,null,0,0,0
+1795561571970,12,Bloquear_Asiento_A,200,OK,Empresa_A 1-1,text,true,,659,1005,1,2,http://localhost:8000/v1/bookings/lock,12,0,0
+1795561571575,496,Auth_Empresa_B,200,OK,Empresa_B 2-1,text,true,,1247,385,1,2,http://localhost:8000/v1/auth/token,496,0,15
+1795561572073,14,Buscar_Vuelos_B,200,OK,Empresa_B 2-1,text,true,,1177,958,1,2,http://localhost:8000/v1/fares/search?origin=BOG&destination=MDE&date=2026-12-07&cabin=ECONOMY&pax=1&airline=DEMO,13,0,0
+1795561572088,13,Inicializar_Bot_B,200,OK,Empresa_B 2-1,text,true,,0,0,1,2,null,0,0,0
+1795561572113,14,Crear_Reserva_A,202,Accepted,Empresa_A 1-1,text,true,,683,1208,1,2,http://localhost:8000/v1/bookings,14,0,0
+1795561572128,8,Consultar_Reserva_A,200,OK,Empresa_A 1-1,text,true,,675,915,1,2,http://localhost:8000/v1/bookings/9d78ce28-c9ea-4c83-a0b2-c91c663e1c68,8,0,0
+1795561572115,4013,Bloquear_Asiento_B,409,Conflict,Empresa_B 2-1,text,false,,590,1005,1,1,http://localhost:8000/v1/bookings/lock,4013,0,0
+1795561576153,13,Bloquear_Asiento_B,200,OK,Empresa_B 2-1,text,true,,659,1005,1,1,http://localhost:8000/v1/bookings/lock,13,0,0
+1795561576175,13,Crear_Reserva_B,202,Accepted,Empresa_B 2-1,text,true,,683,1208,1,1,http://localhost:8000/v1/bookings,13,0,0
+1795561576189,8,Consultar_Reserva_B,200,OK,Empresa_B 2-1,text,true,,675,915,1,1,http://localhost:8000/v1/bookings/123312c9-17ce-46eb-909a-b2862cbb944c,8,0,0

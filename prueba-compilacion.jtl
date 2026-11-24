@@ -1,0 +1,8 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1795561023280,489,Auth_Empresa_A,200,OK,Empresa_A 1-1,text,true,,1246,385,1,2,http://localhost:8000/v1/auth/token,486,0,25
+1795561023280,489,Auth_Empresa_B,200,OK,Empresa_B 2-1,text,true,,1246,385,1,2,http://localhost:8000/v1/auth/token,486,0,25
+1795561023821,30,Buscar_Vuelos_A,200,OK,Empresa_A 1-1,text,true,,1180,958,1,2,http://localhost:8000/v1/fares/search?origin=BOG&destination=MDE&date=2026-12-07&cabin=ECONOMY&pax=1&airline=DEMO,30,0,0
+1795561023821,113,Buscar_Vuelos_B,200,OK,Empresa_B 2-1,text,true,,1201,958,1,1,http://localhost:8000/v1/fares/search?origin=BOG&destination=MDE&date=2026-12-07&cabin=ECONOMY&pax=1&airline=DEMO,113,0,0
+1795561023948,19,Bloquear_Asiento_B,200,OK,Empresa_B 2-1,text,true,,660,1005,1,1,http://localhost:8000/v1/bookings/lock,19,0,0
+1795561024092,10,Crear_Reserva_B,400,Bad Request,Empresa_B 2-1,text,false,,613,1172,1,1,http://localhost:8000/v1/bookings,10,0,0
+1795561024104,9,Consultar_Reserva_B,500,Internal Server Error,Empresa_B 2-1,text,false,,1022,900,1,1,http://localhost:8000/v1/bookings/BOOKING_B_NO_RECIBIDO,9,0,0

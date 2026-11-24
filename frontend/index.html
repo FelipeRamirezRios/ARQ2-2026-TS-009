@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101a2c">
+<title>AeroBooking | Agency Portal</title><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">A</div><div><b>AEROBOOKING</b><small>DISTRIBUTED GDS</small></div></div>
+    <div class="workspace"><span class="eyebrow">WORKSPACE</span><b>Agency operations</b><small><i class="dot"></i> Demo environment</small></div>
+    <nav><a class="active" href="#overview">▦ <span>Overview</span></a><a href="#search">⌕ <span>Flight search</span></a><a href="#booking">▣ <span>Bookings</span></a><a href="#audit">◷ <span>Audit trail</span></a></nav>
+    <div class="side-bottom"><div class="side-status"><span class="dot"></span> API gateway connected</div><a href="http://localhost:16686" target="_blank" rel="noreferrer">↗ Jaeger traces</a><a href="http://localhost:3000" target="_blank" rel="noreferrer">↗ Grafana dashboards</a></div>
+  </aside>
+  <main>
+    <header class="topbar"><div><span class="eyebrow">AGENCY CONSOLE / CASE 09</span><h1>Flight operations</h1></div><div class="top-actions"><span class="live"><i class="dot"></i> SYSTEM ONLINE</span><button id="logout" class="button ghost hidden">Sign out</button></div></header>
+    <section id="loginPanel" class="login-wrap">
+      <div class="login-card"><div class="login-icon">✈</div><span class="eyebrow">SECURE B2B ACCESS</span><h2>Welcome back</h2><p>Authenticate with your agency credentials to manage fares and bookings.</p>
+        <form id="loginForm"><label>Client ID<input id="clientId" value="demo-client" autocomplete="username" required></label><label>Client secret<input id="clientSecret" type="password" value="demo-secret-change-me" autocomplete="current-password" required></label><button class="button primary full">Connect to AeroBooking <span>→</span></button></form>
+        <div class="login-foot">OAuth 2.0 Client Credentials · RS256 · 15-minute token</div>
+      </div>
+      <div class="login-aside"><span class="eyebrow">DISTRIBUTED TRAVEL INFRASTRUCTURE</span><h2>One platform.<br>Connected journeys.</h2><p>Search cached fares, reserve inventory safely and track every transaction across the airline network.</p><div class="feature-pills"><span>01 · Rate protection</span><span>02 · Distributed locks</span><span>03 · Saga compensation</span></div></div>
+    </section>
+    <div id="appPanel" class="hidden">
+      <section class="metrics-grid" id="overview"><article class="metric"><span>AUTHENTICATION</span><b class="metric-value">B2B / RS256</b><small><i class="dot"></i> Token validated at gateway</small></article><article class="metric"><span>FARE CACHE</span><b class="metric-value" id="cacheMetric">READY</b><small>Cache-aside · 10 min TTL</small></article><article class="metric"><span>INVENTORY SAFETY</span><b class="metric-value">REDIS LOCK</b><small>NX lock + fencing token</small></article><article class="metric"><span>TRACEABILITY</span><b class="metric-value">OTEL + JAEGER</b><small>End-to-end distributed traces</small></article></section>
+      <section class="panel" id="search"><div class="panel-head"><div><span class="eyebrow">01 / DISCOVER</span><h2>Search available flights</h2><p>Cached results reduce external airline calls and protect provider rate limits.</p></div><span class="tag green">CACHE ENABLED</span></div>
+        <form id="searchForm" class="search-grid"><label>Origin<input id="origin" maxlength="3" value="BOG" required></label><label>Destination<input id="destination" maxlength="3" value="MDE" required></label><label>Departure date<input id="date" type="date" required></label><label>Cabin<select id="cabin"><option>ECONOMY</option><option>BUSINESS</option><option>FIRST</option></select></label><label>Passengers<select id="pax"><option>1</option><option>2</option><option>3</option><option>4</option></select></label><button class="button primary search-button">Search flights <span>⌕</span></button></form>
+        <div id="searchNotice" class="notice hidden"></div><div id="fareResults" class="fare-results empty-state">Enter a route and date to view available fares.</div>
+      </section>
+      <section class="panel" id="booking"><div class="panel-head"><div><span class="eyebrow">02 / PURCHASE</span><h2>Secure checkout</h2><p>Acquire a temporary distributed lock before submitting the asynchronous purchase saga.</p></div><span class="tag blue">SAGA ORCHESTRATION</span></div>
+        <div class="checkout-grid"><div class="checkout-step"><span class="step">A</span><div><b>Choose a fare</b><small>Select one of the search results above.</small></div></div><div class="checkout-step"><span class="step">B</span><div><b>Lock a seat</b><small>Temporary inventory lock, expires automatically.</small></div></div><div class="checkout-step"><span class="step">C</span><div><b>Confirm purchase</b><small>Payment hold and airline confirmation run asynchronously.</small></div></div></div>
+        <form id="lockForm" class="booking-grid"><label>Selected flight<input id="flightId" placeholder="Select a fare above" readonly required></label><label>Seat number<input id="seat" value="14A" maxlength="3" required></label><button class="button secondary" type="submit">Acquire seat lock</button></form>
+        <div id="lockNotice" class="notice hidden"></div>
+        <form id="purchaseForm" class="booking-grid purchase-grid"><label>Fare quote ID<input id="quoteId" placeholder="Select a fare above" readonly required></label><label>Payment reference<input id="paymentRef" value="demo-payment" required></label><button class="button primary" id="purchaseBtn" disabled>Start purchase saga <span>→</span></button></form>
+        <div id="bookingResult" class="result-box hidden"></div>
+      </section>
+      <section class="panel" id="audit"><div class="panel-head"><div><span class="eyebrow">03 / FORENSICS</span><h2>Audit & transaction evidence</h2><p>Verify the immutable event chain for a booking using its correlation ID.</p></div><span class="tag purple">APPEND-ONLY LEDGER</span></div>
+        <form id="auditForm" class="audit-form"><label>Correlation ID<input id="correlationId" placeholder="Paste correlation ID from a booking" required></label><button class="button secondary">Load audit trail</button></form><div id="auditResult" class="audit-result empty-state">No audit query submitted yet.</div>
+      </section>
+    </div>
+    <footer>© AeroBooking · Team 009 · Educational demo · Mock airline adapter · Open-source stack</footer>
+  </main>
+</div>
+<div id="toast" class="toast" role="status"></div><script src="/app.js"></script>
+</body></html>

@@ -1,0 +1,263 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AeroBooking GDS API",
+    "version": "2.0.0",
+    "description": "B2B booking, PNR, ticketing, CQRS query and event history API."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "BookingQuery": {
+        "type": "object",
+        "required": [
+          "bookingId",
+          "pnr",
+          "status"
+        ],
+        "properties": {
+          "bookingId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pnr": {
+            "type": "string",
+            "minLength": 6,
+            "maxLength": 8
+          },
+          "status": {
+            "type": "string"
+          },
+          "ticketNumber": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "Passenger": {
+        "type": "object",
+        "required": [
+          "firstName",
+          "lastName"
+        ],
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "documentReference": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "passengerType": {
+            "type": "string",
+            "enum": [
+              "ADT",
+              "CHD",
+              "INF"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/v1/bookings": {
+      "post": {
+        "summary": "Create booking (Saga orchestration)",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Booking accepted"
+          },
+          "409": {
+            "description": "Seat or idempotency conflict"
+          }
+        }
+      }
+    },
+    "/v1/bookings/{bookingId}/passengers": {
+      "post": {
+        "summary": "Add passenger to booking",
+        "parameters": [
+          {
+            "name": "bookingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Passenger"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Passenger added"
+          }
+        }
+      }
+    },
+    "/v2/bookings/{bookingId}": {
+      "get": {
+        "summary": "Read booking from CQRS projection",
+        "parameters": [
+          {
+            "name": "bookingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Booking read model",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingQuery"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/v2/bookings/{bookingId}/events": {
+      "get": {
+        "summary": "Read append-only booking event history",
+        "responses": {
+          "200": {
+            "description": "Ordered event stream"
+          }
+        }
+      }
+    },
+    "/v1/pnrs/{pnr}": {
+      "get": {
+        "summary": "Retrieve Passenger Name Record",
+        "responses": {
+          "200": {
+            "description": "PNR details"
+          },
+          "404": {
+            "description": "PNR not found"
+          }
+        }
+      }
+    },
+    "/v1/bookings/{bookingId}/tickets/issue": {
+      "post": {
+        "summary": "Issue/retrieve e-ticket after confirmation",
+        "responses": {
+          "200": {
+            "description": "Ticket issued or existing ticket returned"
+          },
+          "409": {
+            "description": "Booking not confirmed"
+          }
+        }
+      }
+    },
+    "/v1/tickets/{ticketNumber}/void": {
+      "post": {
+        "summary": "Void issued ticket",
+        "responses": {
+          "200": {
+            "description": "Ticket voided"
+          },
+          "409": {
+            "description": "Ticket cannot be voided"
+          }
+        }
+      }
+    },
+    "/v2/admin/projections/rebuild": {
+      "post": {
+        "summary": "Rebuild CQRS read model from append-only event store",
+        "responses": {
+          "200": {
+            "description": "Projection rebuild completed"
+          },
+          "403": {
+            "description": "Admin scope required"
+          }
+        }
+      }
+    },
+    "/v2/bookings": {
+      "get": {
+        "summary": "List agency bookings from CQRS projection",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated tenant-scoped booking read model"
+          }
+        }
+      }
+    }
+  }
+}

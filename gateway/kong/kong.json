@@ -1,0 +1,296 @@
+{
+  "_format_version": "3.0",
+  "_transform": true,
+  "consumers": [
+    {
+      "username": "agency-00000000-0000-4000-8000-000000000009",
+      "custom_id": "00000000-0000-4000-8000-000000000009",
+      "jwt_secrets": [
+        {
+          "key": "demo-client",
+          "algorithm": "RS256",
+          "rsa_public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtF9TmWCMnQmiR1E5mcCT\npLCDKf9bafzbUQ9jx1c1quF6Kqmen5dshkPp7dHaA8PizpCGnfThyKgZPKsJIGDk\nqss1RMyNgBvAVKmUUtbf+jV3EsD2rtID+4M9wU3Gm2uihtxgcXTesCFa4+soCfif\nbJNfoI67AKSvT8oB9ir5NINE0qyTfvWPxjL7/adxBiKqw/xWWGSq0c+drZRN7aC4\nqmayTrqxw6euLsaYU/cXM+7O/qbatjMDsn38/5xxb3wWrcHS0XPcAF/d8fSu4xC/\nXnhfnM4VZqqMrx/5MMGN+mZr0kcWC/Z/rnMcI1FaH2EYTxUVyFMdm7uty/p1FI1C\n8QIDAQAB\n-----END PUBLIC KEY-----\n"
+        },
+        {
+          "key": "demo-admin",
+          "algorithm": "RS256",
+          "rsa_public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtF9TmWCMnQmiR1E5mcCT\npLCDKf9bafzbUQ9jx1c1quF6Kqmen5dshkPp7dHaA8PizpCGnfThyKgZPKsJIGDk\nqss1RMyNgBvAVKmUUtbf+jV3EsD2rtID+4M9wU3Gm2uihtxgcXTesCFa4+soCfif\nbJNfoI67AKSvT8oB9ir5NINE0qyTfvWPxjL7/adxBiKqw/xWWGSq0c+drZRN7aC4\nqmayTrqxw6euLsaYU/cXM+7O/qbatjMDsn38/5xxb3wWrcHS0XPcAF/d8fSu4xC/\nXnhfnM4VZqqMrx/5MMGN+mZr0kcWC/Z/rnMcI1FaH2EYTxUVyFMdm7uty/p1FI1C\n8QIDAQAB\n-----END PUBLIC KEY-----\n"
+        }
+      ]
+    },
+    {
+      "username": "agency-26a3fb11-eda8-40fd-ba23-5219674eaef6",
+      "custom_id": "26a3fb11-eda8-40fd-ba23-5219674eaef6",
+      "jwt_secrets": [
+        {
+          "key": "client-empresa-a",
+          "algorithm": "RS256",
+          "rsa_public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtF9TmWCMnQmiR1E5mcCT\npLCDKf9bafzbUQ9jx1c1quF6Kqmen5dshkPp7dHaA8PizpCGnfThyKgZPKsJIGDk\nqss1RMyNgBvAVKmUUtbf+jV3EsD2rtID+4M9wU3Gm2uihtxgcXTesCFa4+soCfif\nbJNfoI67AKSvT8oB9ir5NINE0qyTfvWPxjL7/adxBiKqw/xWWGSq0c+drZRN7aC4\nqmayTrqxw6euLsaYU/cXM+7O/qbatjMDsn38/5xxb3wWrcHS0XPcAF/d8fSu4xC/\nXnhfnM4VZqqMrx/5MMGN+mZr0kcWC/Z/rnMcI1FaH2EYTxUVyFMdm7uty/p1FI1C\n8QIDAQAB\n-----END PUBLIC KEY-----\n"
+        }
+      ]
+    },
+    {
+      "username": "agency-33d47a68-2b5c-4cd8-bcaa-7f96decd2fa8",
+      "custom_id": "33d47a68-2b5c-4cd8-bcaa-7f96decd2fa8",
+      "jwt_secrets": [
+        {
+          "key": "client-empresa-b",
+          "algorithm": "RS256",
+          "rsa_public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtF9TmWCMnQmiR1E5mcCT\npLCDKf9bafzbUQ9jx1c1quF6Kqmen5dshkPp7dHaA8PizpCGnfThyKgZPKsJIGDk\nqss1RMyNgBvAVKmUUtbf+jV3EsD2rtID+4M9wU3Gm2uihtxgcXTesCFa4+soCfif\nbJNfoI67AKSvT8oB9ir5NINE0qyTfvWPxjL7/adxBiKqw/xWWGSq0c+drZRN7aC4\nqmayTrqxw6euLsaYU/cXM+7O/qbatjMDsn38/5xxb3wWrcHS0XPcAF/d8fSu4xC/\nXnhfnM4VZqqMrx/5MMGN+mZr0kcWC/Z/rnMcI1FaH2EYTxUVyFMdm7uty/p1FI1C\n8QIDAQAB\n-----END PUBLIC KEY-----\n"
+        }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "name": "auth-service",
+      "url": "http://auth-service:3001",
+      "routes": [
+        {
+          "id": "22836027-aff8-40ed-93c4-7000a51a2431",
+          "name": "auth-token-route",
+          "paths": [
+            "/v1/auth/token"
+          ],
+          "strip_path": false
+        },
+        {
+          "id": "88fb9ec5-9d72-4e7b-9f35-d88e2f33a026",
+          "name": "auth-key-management-route",
+          "paths": [
+            "/v1/auth/keys"
+          ],
+          "strip_path": false
+        },
+        {
+          "id": "c7795ace-56e1-46cf-bb2f-f5664bd0d776",
+          "name": "auth-token-revocation-route",
+          "paths": [
+            "/v1/auth/tokens"
+          ],
+          "strip_path": false
+        }
+      ]
+    },
+    {
+      "name": "search-service",
+      "url": "http://search-service:3002",
+      "routes": [
+        {
+          "id": "9d910d27-fb67-45df-a1a1-0832a09f40ad",
+          "name": "search-routes",
+          "paths": [
+            "/v1/fares"
+          ],
+          "strip_path": false
+        }
+      ]
+    },
+    {
+      "name": "booking-service",
+      "url": "http://booking-service:3003",
+      "routes": [
+        {
+          "id": "aff25168-b8c2-4f29-9c3b-2597399ace25",
+          "name": "booking-routes",
+          "paths": [
+            "/v1/bookings",
+            "/v2/bookings",
+            "/v2/admin/projections",
+            "/v1/pnrs",
+            "/v1/tickets",
+            "/v1/admin/reconciliation"
+          ],
+          "strip_path": false
+        }
+      ]
+    },
+    {
+      "name": "audit-service",
+      "url": "http://audit-service:3005",
+      "routes": [
+        {
+          "id": "e6adbb5b-d4a6-44a2-b9f8-2b248b8b569e",
+          "name": "audit-routes",
+          "paths": [
+            "/v1/audit"
+          ],
+          "strip_path": false
+        }
+      ]
+    }
+  ],
+  "plugins": [
+    {
+      "name": "prometheus",
+      "config": {
+        "per_consumer": true
+      }
+    },
+    {
+      "name": "correlation-id",
+      "config": {
+        "header_name": "X-Correlation-ID",
+        "generator": "uuid",
+        "echo_downstream": true
+      }
+    },
+    {
+      "name": "rate-limiting",
+      "config": {
+        "minute": 120,
+        "limit_by": "consumer",
+        "policy": "redis",
+        "redis_host": "valkey",
+        "redis_port": 6379,
+        "fault_tolerant": false
+      }
+    },
+    {
+      "id": "e16ae407-c2d2-47f2-a45e-79f962aed032",
+      "name": "jwt",
+      "route": {
+        "id": "9d910d27-fb67-45df-a1a1-0832a09f40ad"
+      },
+      "config": {
+        "claims_to_verify": [
+          "exp"
+        ],
+        "key_claim_name": "iss",
+        "header_names": [
+          "authorization"
+        ]
+      }
+    },
+    {
+      "id": "5f8dfc1e-8a35-4655-a585-5a84cef05f72",
+      "name": "jwt",
+      "route": {
+        "id": "aff25168-b8c2-4f29-9c3b-2597399ace25"
+      },
+      "config": {
+        "claims_to_verify": [
+          "exp"
+        ],
+        "key_claim_name": "iss",
+        "header_names": [
+          "authorization"
+        ]
+      }
+    },
+    {
+      "id": "4c1ce023-cf38-4a36-8743-e2f04b84f893",
+      "name": "jwt",
+      "route": {
+        "id": "e6adbb5b-d4a6-44a2-b9f8-2b248b8b569e"
+      },
+      "config": {
+        "claims_to_verify": [
+          "exp"
+        ],
+        "key_claim_name": "iss",
+        "header_names": [
+          "authorization"
+        ]
+      }
+    },
+    {
+      "id": "7e71f22d-f19f-47ff-aef0-687199cd69ad",
+      "name": "jwt",
+      "route": {
+        "id": "88fb9ec5-9d72-4e7b-9f35-d88e2f33a026"
+      },
+      "config": {
+        "claims_to_verify": [
+          "exp"
+        ],
+        "key_claim_name": "iss",
+        "header_names": [
+          "authorization"
+        ]
+      }
+    },
+    {
+      "id": "eaf51ab3-0e0f-4682-bae3-5a959b4f09cb",
+      "name": "jwt",
+      "route": {
+        "id": "c7795ace-56e1-46cf-bb2f-f5664bd0d776"
+      },
+      "config": {
+        "claims_to_verify": [
+          "exp"
+        ],
+        "key_claim_name": "iss",
+        "header_names": [
+          "authorization"
+        ]
+      }
+    },
+    {
+      "id": "6aac3562-8b65-4eed-93b9-de41d69d6014",
+      "name": "jwt-revocation",
+      "route": {
+        "id": "9d910d27-fb67-45df-a1a1-0832a09f40ad"
+      },
+      "config": {
+        "redis_host": "valkey",
+        "redis_port": 6379
+      }
+    },
+    {
+      "id": "bd20c550-a35c-4ae8-b907-c97d5a148199",
+      "name": "jwt-revocation",
+      "route": {
+        "id": "aff25168-b8c2-4f29-9c3b-2597399ace25"
+      },
+      "config": {
+        "redis_host": "valkey",
+        "redis_port": 6379
+      }
+    },
+    {
+      "id": "8322c096-1e25-43d1-8dbb-f677b7affe9e",
+      "name": "jwt-revocation",
+      "route": {
+        "id": "e6adbb5b-d4a6-44a2-b9f8-2b248b8b569e"
+      },
+      "config": {
+        "redis_host": "valkey",
+        "redis_port": 6379
+      }
+    },
+    {
+      "id": "53edd0e4-a00e-4383-b136-7c1b37558a67",
+      "name": "jwt-revocation",
+      "route": {
+        "id": "88fb9ec5-9d72-4e7b-9f35-d88e2f33a026"
+      },
+      "config": {
+        "redis_host": "valkey",
+        "redis_port": 6379
+      }
+    },
+    {
+      "id": "ac78936d-2db6-434b-a9bc-ce98193f1e5a",
+      "name": "jwt-revocation",
+      "route": {
+        "id": "c7795ace-56e1-46cf-bb2f-f5664bd0d776"
+      },
+      "config": {
+        "redis_host": "valkey",
+        "redis_port": 6379
+      }
+    },
+    {
+      "name": "idempotency",
+      "config": {
+        "redis_host": "valkey",
+        "redis_port": 6379,
+        "ttl": 86400,
+        "required_paths": [
+          "/v1/bookings"
+        ]
+      }
+    }
+  ]
+}

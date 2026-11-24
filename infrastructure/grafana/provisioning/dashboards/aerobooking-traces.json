@@ -1,0 +1,59 @@
+{
+  "uid": "aerobooking-traces",
+  "title": "AeroBooking | Distributed Tracing",
+  "tags": [
+    "aerobooking",
+    "tracing",
+    "opentelemetry",
+    "jaeger"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "15s",
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "text",
+      "title": "Distributed tracing with OpenTelemetry + Jaeger",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 4
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "## Trace exploration\nSelect a time range and use the Jaeger trace search below. Open a trace to inspect spans across API Gateway and AeroBooking services. Search by service, operation, tags or trace ID.\n\nJaeger UI: [http://localhost:16686](http://localhost:16686)"
+      }
+    },
+    {
+      "id": 2,
+      "type": "traces",
+      "title": "Recent distributed traces",
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 24,
+        "h": 14
+      },
+      "datasource": {
+        "type": "jaeger",
+        "uid": "jaeger"
+      },
+      "targets": [
+        {
+          "queryType": "search",
+          "query": "{}",
+          "refId": "A"
+        }
+      ]
+    }
+  ],
+  "editable": true,
+  "graphTooltip": 1
+}

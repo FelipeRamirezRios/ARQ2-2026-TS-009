@@ -1,0 +1,24 @@
+{
+  "id": null,
+  "uid": "aerobooking-enterprise",
+  "title": "AeroBooking - Enterprise GDS",
+  "tags": ["aerobooking", "enterprise", "cqrs", "event-sourcing", "ticketing"],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "15s",
+  "time": {"from": "now-6h", "to": "now"},
+  "panels": [
+    {"id": 1, "type": "stat", "title": "Domain events / min", "gridPos": {"h": 5, "w": 6, "x": 0, "y": 0}, "targets": [{"expr": "sum(rate(aerobooking_domain_events_total[5m]))*60", "legendFormat": "events/min"}], "fieldConfig": {"defaults": {"unit": "short"}, "overrides": []}},
+    {"id": 2, "type": "stat", "title": "Outbox pending", "gridPos": {"h": 5, "w": 6, "x": 6, "y": 0}, "targets": [{"expr": "aerobooking_outbox_unpublished", "legendFormat": "pending"}], "fieldConfig": {"defaults": {"unit": "short"}, "overrides": []}},
+    {"id": 3, "type": "stat", "title": "Reconciliation findings", "gridPos": {"h": 5, "w": 6, "x": 12, "y": 0}, "targets": [{"expr": "sum(increase(aerobooking_reconciliation_findings_total[1h]))", "legendFormat": "findings/hour"}], "fieldConfig": {"defaults": {"unit": "short"}, "overrides": []}},
+    {"id": 4, "type": "stat", "title": "Ticket operations / min", "gridPos": {"h": 5, "w": 6, "x": 18, "y": 0}, "targets": [{"expr": "sum(rate(aerobooking_ticket_operations_total[5m]))*60", "legendFormat": "operations/min"}], "fieldConfig": {"defaults": {"unit": "short"}, "overrides": []}},
+    {"id": 5, "type": "timeseries", "title": "Domain events by type", "gridPos": {"h": 9, "w": 12, "x": 0, "y": 5}, "targets": [{"expr": "sum by (event_type) (rate(aerobooking_domain_events_total[5m]))", "legendFormat": "{{event_type}}"}], "fieldConfig": {"defaults": {"unit": "ops"}, "overrides": []}},
+    {"id": 6, "type": "timeseries", "title": "Ticket issue / void operations", "gridPos": {"h": 9, "w": 12, "x": 12, "y": 5}, "targets": [{"expr": "sum by (operation,result) (rate(aerobooking_ticket_operations_total[5m]))", "legendFormat": "{{operation}} / {{result}}"}], "fieldConfig": {"defaults": {"unit": "ops"}, "overrides": []}},
+    {"id": 7, "type": "timeseries", "title": "Booking API latency p95", "gridPos": {"h": 9, "w": 12, "x": 0, "y": 14}, "targets": [{"expr": "histogram_quantile(0.95, sum by (le,route) (rate(aerobooking_http_request_duration_seconds_bucket{service=\"booking-service\"}[5m])))", "legendFormat": "{{route}}"}], "fieldConfig": {"defaults": {"unit": "s"}, "overrides": []}},
+    {"id": 8, "type": "timeseries", "title": "PNR lookup rate", "gridPos": {"h": 9, "w": 12, "x": 12, "y": 14}, "targets": [{"expr": "sum by (result) (rate(aerobooking_pnr_lookups_total[5m]))", "legendFormat": "{{result}}"}], "fieldConfig": {"defaults": {"unit": "ops"}, "overrides": []}},
+    {"id": 9, "type": "table", "title": "Outbox oldest pending events", "gridPos": {"h": 8, "w": 24, "x": 0, "y": 23}, "targets": [{"expr": "aerobooking_outbox_unpublished", "legendFormat": "pending"}], "fieldConfig": {"defaults": {}, "overrides": []}, "description": "Use the Outbox dashboard and PostgreSQL query to inspect age, attempts and last_error for individual messages."}
+  ],
+  "annotations": {"list": [{"builtIn": 1, "datasource": {"type": "grafana", "uid": "-- Grafana --"}, "enable": true, "hide": true, "iconColor": "rgba(0, 211, 255, 1)", "name": "Annotations & Alerts", "type": "dashboard"}]},
+  "templating": {"list": []}
+}

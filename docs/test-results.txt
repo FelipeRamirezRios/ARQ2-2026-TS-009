@@ -1,0 +1,272 @@
+
+> aerobooking-wave2@1.0.0 test
+> node --test tests/*.test.js
+
+TAP version 13
+# Subtest: Wave 1 source artifacts are preserved
+ok 1 - Wave 1 source artifacts are preserved
+  ---
+  duration_ms: 2.086501
+  type: 'test'
+  ...
+# Subtest: Wave 2 contains the mandatory infrastructure stack
+ok 2 - Wave 2 contains the mandatory infrastructure stack
+  ---
+  duration_ms: 0.4788
+  type: 'test'
+  ...
+# Subtest: Feature 1: OAuth2, RS256 and token revocation are implemented
+ok 3 - Feature 1: OAuth2, RS256 and token revocation are implemented
+  ---
+  duration_ms: 0.285463
+  type: 'test'
+  ...
+# Subtest: Feature 2: cache-aside, single-flight and airline token bucket are implemented
+ok 4 - Feature 2: cache-aside, single-flight and airline token bucket are implemented
+  ---
+  duration_ms: 0.224653
+  type: 'test'
+  ...
+# Subtest: Feature 3: atomic seat locks and fencing tokens are implemented
+ok 5 - Feature 3: atomic seat locks and fencing tokens are implemented
+  ---
+  duration_ms: 0.398681
+  type: 'test'
+  ...
+# Subtest: Feature 4: Saga compensation, outbox and recovery are implemented
+ok 6 - Feature 4: Saga compensation, outbox and recovery are implemented
+  ---
+  duration_ms: 0.39108
+  type: 'test'
+  ...
+# Subtest: Feature 5: append-only audit and hash chain are implemented
+ok 7 - Feature 5: append-only audit and hash chain are implemented
+  ---
+  duration_ms: 0.35089
+  type: 'test'
+  ...
+# Subtest: OpenSpec remains the contract source of truth
+ok 8 - OpenSpec remains the contract source of truth
+  ---
+  duration_ms: 0.311892
+  type: 'test'
+  ...
+# Subtest: Updated Wave 1 contract: booking body binds flight and seat to lock
+ok 9 - Updated Wave 1 contract: booking body binds flight and seat to lock
+  ---
+  duration_ms: 0.6819
+  type: 'test'
+  ...
+# Subtest: Updated Wave 1 contract: airline booking command uses documented routing key and payload
+ok 10 - Updated Wave 1 contract: airline booking command uses documented routing key and payload
+  ---
+  duration_ms: 1.55293
+  type: 'test'
+  ...
+# Subtest: Kong rate limiting is scoped per agency consumer and uses Redis-compatible Valkey
+ok 11 - Kong rate limiting is scoped per agency consumer and uses Redis-compatible Valkey
+  ---
+  duration_ms: 0.23654
+  type: 'test'
+  ...
+# Subtest: Agency portal is served through Nginx and proxies API requests through Kong
+ok 12 - Agency portal is served through Nginx and proxies API requests through Kong
+  ---
+  duration_ms: 0.641761
+  type: 'test'
+  ...
+# Subtest: Jaeger and OpenTelemetry tracing are enabled for every Node.js service
+ok 13 - Jaeger and OpenTelemetry tracing are enabled for every Node.js service
+  ---
+  duration_ms: 0.259134
+  type: 'test'
+  ...
+# Subtest: Grafana provisions metrics, logs and distributed tracing data sources
+ok 14 - Grafana provisions metrics, logs and distributed tracing data sources
+  ---
+  duration_ms: 0.1481
+  type: 'test'
+  ...
+# Subtest: Observability scrapes application and infrastructure exporters
+ok 15 - Observability scrapes application and infrastructure exporters
+  ---
+  duration_ms: 0.248268
+  type: 'test'
+  ...
+# Subtest: Grafana dashboards cover app, infrastructure, logs, traces and business operations
+ok 16 - Grafana dashboards cover app, infrastructure, logs, traces and business operations
+  ---
+  duration_ms: 0.220356
+  type: 'test'
+  ...
+# Subtest: Business observability exposes cache, distributed lock, Saga and audit metrics
+ok 17 - Business observability exposes cache, distributed lock, Saga and audit metrics
+  ---
+  duration_ms: 0.259334
+  type: 'test'
+  ...
+# Subtest: Prometheus alert rules cover availability, HTTP errors, latency and memory pressure
+ok 18 - Prometheus alert rules cover availability, HTTP errors, latency and memory pressure
+  ---
+  duration_ms: 0.146136
+  type: 'test'
+  ...
+# Subtest: Complete scope: transactional outbox has retry metadata and backoff relay
+ok 19 - Complete scope: transactional outbox has retry metadata and backoff relay
+  ---
+  duration_ms: 0.151294
+  type: 'test'
+  ...
+# Subtest: Complete scope: reconciliation is protected by admin scope and report-first
+ok 20 - Complete scope: reconciliation is protected by admin scope and report-first
+  ---
+  duration_ms: 0.243671
+  type: 'test'
+  ...
+# Subtest: Complete scope: authentication endpoint has Redis-backed brute-force throttling
+ok 21 - Complete scope: authentication endpoint has Redis-backed brute-force throttling
+  ---
+  duration_ms: 0.109913
+  type: 'test'
+  ...
+# Subtest: Complete scope: circuit breaker state and transition metrics are exported
+ok 22 - Complete scope: circuit breaker state and transition metrics are exported
+  ---
+  duration_ms: 0.122501
+  type: 'test'
+  ...
+# Subtest: Complete scope: reliability dashboard and alerts are provisioned
+ok 23 - Complete scope: reliability dashboard and alerts are provisioned
+  ---
+  duration_ms: 0.117043
+  type: 'test'
+  ...
+# Subtest: Kong bootstrap preserves protected reconciliation route across startup regeneration
+ok 24 - Kong bootstrap preserves protected reconciliation route across startup regeneration
+  ---
+  duration_ms: 0.108621
+  type: 'test'
+  ...
+# Subtest: Airline connector supports deterministic failure injection for circuit-breaker demos
+ok 25 - Airline connector supports deterministic failure injection for circuit-breaker demos
+  ---
+  duration_ms: 0.095551
+  type: 'test'
+  ...
+# Subtest: CQRS/Event Sourcing migration defines event store and read projection
+ok 26 - CQRS/Event Sourcing migration defines event store and read projection
+  ---
+  duration_ms: 1.016886
+  type: 'test'
+  ...
+# Subtest: PNR and e-ticket schema enforces one PNR and ticket per booking
+ok 27 - PNR and e-ticket schema enforces one PNR and ticket per booking
+  ---
+  duration_ms: 0.226766
+  type: 'test'
+  ...
+# Subtest: same idempotency key and same payload is replay-safe
+ok 28 - same idempotency key and same payload is replay-safe
+  ---
+  duration_ms: 0.922667
+  type: 'test'
+  ...
+# Subtest: same idempotency key with a different payload is rejected
+ok 29 - same idempotency key with a different payload is rejected
+  ---
+  duration_ms: 0.233136
+  type: 'test'
+  ...
+# Subtest: ticket issuance only allowed after airline-confirmed booking
+ok 30 - ticket issuance only allowed after airline-confirmed booking
+  ---
+  duration_ms: 0.120128
+  type: 'test'
+  ...
+# Subtest: ticket number is deterministic for retry safety
+ok 31 - ticket number is deterministic for retry safety
+  ---
+  duration_ms: 0.144374
+  type: 'test'
+  ...
+# Subtest: API contract documents v1 and v2 booking resources
+ok 32 - API contract documents v1 and v2 booking resources
+  ---
+  duration_ms: 0.354485
+  type: 'test'
+  ...
+# Subtest: Kong routes expose enterprise v2 and PNR/ticket endpoints
+ok 33 - Kong routes expose enterprise v2 and PNR/ticket endpoints
+  ---
+  duration_ms: 0.349748
+  type: 'test'
+  ...
+# Subtest: fresh-install schema includes Enterprise migration and immutable event guard
+ok 34 - fresh-install schema includes Enterprise migration and immutable event guard
+  ---
+  duration_ms: 0.325452
+  type: 'test'
+  ...
+# Subtest: backup, restore, chaos and k6 assets are included
+ok 35 - backup, restore, chaos and k6 assets are included
+  ---
+  duration_ms: 0.475354
+  type: 'test'
+  ...
+# Subtest: Enterprise Grafana dashboard visualizes event, outbox, reconciliation and ticket metrics
+ok 36 - Enterprise Grafana dashboard visualizes event, outbox, reconciliation and ticket metrics
+  ---
+  duration_ms: 0.275498
+  type: 'test'
+  ...
+# Subtest: Docker Compose applies Enterprise migration before booking-service starts
+ok 37 - Docker Compose applies Enterprise migration before booking-service starts
+  ---
+  duration_ms: 0.167598
+  type: 'test'
+  ...
+# Subtest: booking service exposes tenant-scoped CQRS, PNR, passenger and ticket endpoints
+ok 38 - booking service exposes tenant-scoped CQRS, PNR, passenger and ticket endpoints
+  ---
+  duration_ms: 1.240568
+  type: 'test'
+  ...
+# Subtest: booking idempotency rejects payload drift and handles uniqueness races
+ok 39 - booking idempotency rejects payload drift and handles uniqueness races
+  ---
+  duration_ms: 0.239645
+  type: 'test'
+  ...
+# Subtest: confirmed booking without capture is reported as critical
+ok 40 - confirmed booking without capture is reported as critical
+  ---
+  duration_ms: 1.091046
+  type: 'test'
+  ...
+# Subtest: compensated booking with unreversed hold is reported
+ok 41 - compensated booking with unreversed hold is reported
+  ---
+  duration_ms: 0.123573
+  type: 'test'
+  ...
+# Subtest: consistent completed purchase has no findings
+ok 42 - consistent completed purchase has no findings
+  ---
+  duration_ms: 0.106277
+  type: 'test'
+  ...
+# Subtest: Saga and booking status disagreement is reported
+ok 43 - Saga and booking status disagreement is reported
+  ---
+  duration_ms: 0.150393
+  type: 'test'
+  ...
+1..43
+# tests 43
+# suites 0
+# pass 43
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 186.025778
